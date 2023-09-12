@@ -19,4 +19,3 @@ class UserController extends Controller
             ->with('id', $id);
     }
 }
-
