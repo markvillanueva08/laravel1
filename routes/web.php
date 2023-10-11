@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -35,3 +36,4 @@ use Illuminate\Http\Response;
 Route::get('/',  [StudentController::class, 'index']);
 Route::get('/register', [UserController::class,'register']);
 Route::get('/login', [UserController::class,'login']);
+Route::post('/store', [UserController::class, 'store']);
