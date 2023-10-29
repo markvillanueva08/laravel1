@@ -24,6 +24,21 @@ class UserController extends Controller
             return abort(404);
         }
     }
+    public function process(Request $request){
+        $validated = $request->validate([
+            "email" => ['required', 'email'],
+            "password" => 'required'
+        ]);
+
+        if(auth()->attempt($validated)){
+            $request->session()->regenerate();
+            return redirect('/')->with('message', 'Welcome Back!');
+        }
+        else {
+            return redirect('/login')->with('message', 'Invalid Email or Password');
+        }
+    }
+
     public function register() {
         if(View::exists('user.register')){
             return view('user.register');
@@ -32,6 +47,14 @@ class UserController extends Controller
             return abort(404);
         }
     }
+    public function logout(Request $request){
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('message', 'Logout Successsful');
+    }
+
     public function store(Request $request) {
         $validated = $request->validate([
             "name"=> ['required', 'min:4'],

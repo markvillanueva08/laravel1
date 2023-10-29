@@ -1,7 +1,7 @@
 
 @include('partials.header')
 <x-nav/>
-
+<x-messages/>
 <header class="max-w-lg mx-auto mt-5">
     <a href="">
         <h1 class="text-4xl font-bold text-white text-center">Student List</h1>
