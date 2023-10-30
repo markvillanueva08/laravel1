@@ -37,6 +37,7 @@ class UserController extends Controller
         else {
             return redirect('/login')->with('message', 'Invalid Email or Password');
         }
+        return back()->withErrors(['email' => 'Login Failed'])->onlyInput('email');
     }
 
     public function register() {
@@ -52,7 +53,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('message', 'Logout Successsful');
+        return redirect('/login')->with('message', 'Logout Successsful');
     }
 
     public function store(Request $request) {
